@@ -1,6 +1,7 @@
 import { defineConfig } from '@mikro-orm/core'
 import { PostgreSqlDriver } from '@mikro-orm/postgresql'
 import { Pokemon } from './entities/Pokemon.js'
+import { User } from './entities/User.js'
 
 export default defineConfig({
     driver: PostgreSqlDriver,
@@ -9,7 +10,7 @@ export default defineConfig({
     user: process.env.DB_USER || 'postgres',
     password: process.env.DB_PASSWORD || 'postgres',
     dbName: process.env.DB_NAME || 'pokemon_db',
-    entities: [Pokemon],
+    entities: [Pokemon, User],
     migrations: {
         path: './dist/migrations',
         pathTs: './src/migrations',
