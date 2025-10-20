@@ -1,23 +1,23 @@
-import * as dotenv from 'dotenv'
-import fastify from 'fastify'
-dotenv.config()
+import { buildApp } from './app'
 
-const port = parseInt(process.env.PORT || '3000')
-const host = process.env.HOST || '0.0.0.0'
+const start = async (): Promise<void> => {
+    try {
+        console.log('Starting Pokemon API server...')
 
-const app = fastify({
-    logger: {
-        level: process.env.LOG_LEVEL || 'info',
-    },
-})
+        const app = await buildApp()
+        const port = parseInt(process.env.PORT || '3333')
+        const host = process.env.HOST || '0.0.0.0'
 
-app.get('/health', async () => {
-    return { status: 'ok', timestamp: new Date().toISOString() }
-})
+        await app.listen({ port, host })
 
-app.get('/', async () => {
-    return 'Hello!'
-})
+        console.log(`Server ready at http://${host}:${port}`)
+        console.log(`API documentation available at http://${host}:${port}/docs`)
+        console.log(`Health check available at http://${host}:${port}/health`)
+        console.log(`Pokemons API available at http://${host}:${port}/pokemons`)
+    } catch (error) {
+        console.error('Error starting server:', error)
+        process.exit(1)
+    }
+}
 
-await app.listen({ port, host })
-console.log(`Server ready at http://${host}:${port}`)
+start()
