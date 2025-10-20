@@ -48,8 +48,6 @@ services:
             echo 'Seeding database' &&
             npx mikro-orm seeder:run &&
             echo 'Setup complete' &&
-            echo 'API running at http://localhost:3333' &&
-            echo 'Swagger docs at http://localhost:3333/docs' &&
             node dist/index.js
             "
         restart: unless-stopped

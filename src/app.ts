@@ -2,11 +2,11 @@ import fastify, { FastifyInstance } from 'fastify'
 import { databasePlugin } from './plugins/database.js'
 import { jwtPlugin } from './plugins/jwt.js'
 // import { swaggerPlugin } from './plugins/swagger.js'
+import fastifySwagger from '@fastify/swagger'
+import fastifySwaggerUi from '@fastify/swagger-ui'
 import { authRoutes } from './routes/auth.js'
 import { favoritesRoutes } from './routes/favorites.js'
 import { pokemonRoutes } from './routes/pokemon.js'
-import fastifySwagger from '@fastify/swagger'
-import fastifySwaggerUi from '@fastify/swagger-ui'
 
 export const buildApp = async (): Promise<FastifyInstance> => {
     const app = fastify({
