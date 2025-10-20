@@ -11,9 +11,8 @@ export class FavoritesController {
 
             const favorites = await favoriteService.getUserFavorites(userId)
 
-            return reply.send({
-                userId,
-                favorites: favorites.map((fav) => ({
+            return reply.send(
+                favorites.map((fav) => ({
                     id: fav.id,
                     pokemon: {
                         id: fav.pokemon.id,
@@ -22,7 +21,7 @@ export class FavoritesController {
                     },
                     createdAt: fav.createdAt,
                 })),
-            })
+            )
         } catch (error: any) {
             request.log.error(error)
             const statusCode = error.statusCode || 500
@@ -40,7 +39,7 @@ export class FavoritesController {
 
             const result = await favoriteService.addFavorite(userId, pokemonId)
 
-            return reply.send({
+            return reply.status(201).send({
                 message: 'Pokemon added to favorites',
                 favorite: {
                     id: result.id,

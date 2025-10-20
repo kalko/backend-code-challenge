@@ -24,16 +24,10 @@ export const getFavoritesSchema = {
     security: [{ Bearer: [] }],
     response: {
         200: {
-            type: 'object',
-            properties: {
-                userId: { type: 'string', description: 'User ID' },
-                favorites: {
-                    type: 'array',
-                    items: {
-                        type: 'object',
-                        properties: favoriteItemProperties,
-                    },
-                },
+            type: 'array',
+            items: {
+                type: 'object',
+                properties: favoriteItemProperties,
             },
         },
         401: errorResponse,
@@ -53,7 +47,7 @@ export const addFavoriteSchema = {
         required: ['pokemonId'],
     },
     response: {
-        200: {
+        201: {
             type: 'object',
             properties: {
                 message: { type: 'string' },
