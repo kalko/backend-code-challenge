@@ -1,13 +1,13 @@
 import { Entity, ManyToOne, PrimaryKey } from '@mikro-orm/core'
 import { Attack } from './Attack.js'
-import { Pokemon } from './Pokemon.js'
+import type { Pokemon } from './Pokemon.js'
 
 @Entity()
 export class PokemonAttack {
     @PrimaryKey({ autoincrement: true })
     id!: number
 
-    @ManyToOne(() => Pokemon)
+    @ManyToOne('Pokemon')
     pokemon!: Pokemon
 
     @ManyToOne(() => Attack)

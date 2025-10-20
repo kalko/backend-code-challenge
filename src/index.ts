@@ -10,10 +10,12 @@ const start = async (): Promise<void> => {
 
         await app.listen({ port, host })
 
-        console.log(`Server ready at http://${host}:${port}`)
-        console.log(`API documentation available at http://${host}:${port}/docs`)
-        console.log(`Health check available at http://${host}:${port}/health`)
-        console.log(`Pokemons API available at http://${host}:${port}/pokemons`)
+        const displayHost = host === '0.0.0.0' ? 'localhost' : host
+
+        console.log(`Server ready at http://${displayHost}:${port}`)
+        console.log(`API documentation available at http://${displayHost}:${port}/docs`)
+        console.log(`Health check available at http://${displayHost}:${port}/health`)
+        console.log(`Pokemons API available at http://${displayHost}:${port}/pokemons`)
     } catch (error) {
         console.error('Error starting server:', error)
         process.exit(1)

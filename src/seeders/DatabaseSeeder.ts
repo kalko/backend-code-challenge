@@ -8,6 +8,12 @@ import { PokemonAttack } from '../entities/PokemonAttack.js'
 
 export class DatabaseSeeder extends Seeder {
     async run(em: EntityManager): Promise<void> {
+        const existingCount = await em.count(Pokemon)
+        if (existingCount > 0) {
+            console.log(`Database already seeded. Skipping seeding process.`)
+            return
+        }
+
         const pokemonDataPath = path.join(process.cwd(), 'pokemons.json')
         const pokemonData = JSON.parse(fs.readFileSync(pokemonDataPath, 'utf-8'))
 
