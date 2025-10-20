@@ -11,6 +11,9 @@ export class Pokemon {
     @Property()
     classification!: string
 
+    @Property({ type: 'json' })
+    types!: string[]
+
     @Property()
     weightMinimum!: string
 

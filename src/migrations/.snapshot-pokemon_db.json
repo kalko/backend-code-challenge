@@ -33,6 +33,15 @@
           "nullable": false,
           "mappedType": "string"
         },
+        "types": {
+          "name": "types",
+          "type": "jsonb",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "json"
+        },
         "weight_minimum": {
           "name": "weight_minimum",
           "type": "varchar(255)",

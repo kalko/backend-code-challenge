@@ -2,6 +2,7 @@ const pokemonProperties = {
     id: { type: 'string' },
     name: { type: 'string' },
     classification: { type: 'string' },
+    types: { type: 'array', items: { type: 'string' } },
     weightMinimum: { type: 'string' },
     weightMaximum: { type: 'string' },
     heightMinimum: { type: 'string' },
@@ -21,7 +22,8 @@ export const getPokemonsSchema = {
         properties: {
             page: { type: 'number', default: 1, description: 'Page number (starts at 1)' },
             limit: { type: 'number', default: 20, description: 'Items per page' },
-            search: { type: 'string', description: 'Search by Pokemon name' },
+            search: { type: 'string', description: 'Search by Pokemon name (case-insensitive)' },
+            type: { type: 'string', description: 'Filter by Pokemon type (Fire, Water, Grass)' },
             favorite: {
                 type: 'boolean',
                 description: 'Filter by favorite Pokemons (requires authentication)',
@@ -97,6 +99,22 @@ export const getPokemonByNameSchema = {
             type: 'object',
             properties: {
                 error: { type: 'string' },
+            },
+        },
+    },
+}
+
+export const getPokemonTypesSchema = {
+    description: 'Get list of all unique Pokemon types',
+    tags: ['Pokemons'],
+    response: {
+        200: {
+            type: 'object',
+            properties: {
+                types: {
+                    type: 'array',
+                    items: { type: 'string' },
+                },
             },
         },
     },

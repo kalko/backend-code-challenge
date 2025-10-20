@@ -17,6 +17,7 @@ export class DatabaseSeeder extends Seeder {
                 id: pokemonJson.id,
                 name: pokemonJson.name,
                 classification: pokemonJson.classification,
+                types: pokemonJson.types || [],
                 weightMinimum: pokemonJson.weight?.minimum || '0kg',
                 weightMaximum: pokemonJson.weight?.maximum || '0kg',
                 heightMinimum: pokemonJson.height?.minimum || '0m',
