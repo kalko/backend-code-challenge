@@ -1,8 +1,23 @@
+const attackProperties = {
+    id: { type: 'number' },
+    name: { type: 'string' },
+    type: { type: 'string' },
+    damage: { type: 'number' },
+    category: { type: 'string', enum: ['fast', 'special'] },
+}
+
+const evolutionProperties = {
+    id: { type: 'number' },
+    name: { type: 'string' },
+}
+
 const pokemonProperties = {
     id: { type: 'string' },
     name: { type: 'string' },
     classification: { type: 'string' },
     types: { type: 'array', items: { type: 'string' } },
+    resistant: { type: 'array', items: { type: 'string' } },
+    weaknesses: { type: 'array', items: { type: 'string' } },
     weightMinimum: { type: 'string' },
     weightMaximum: { type: 'string' },
     heightMinimum: { type: 'string' },
@@ -10,6 +25,20 @@ const pokemonProperties = {
     fleeRate: { type: 'number' },
     evolutionRequirementName: { type: 'string' },
     evolutionRequirementAmount: { type: 'number' },
+    evolutions: {
+        type: 'array',
+        items: {
+            type: 'object',
+            properties: evolutionProperties,
+        },
+    },
+    attacks: {
+        type: 'array',
+        items: {
+            type: 'object',
+            properties: attackProperties,
+        },
+    },
     maxCP: { type: 'number' },
     maxHP: { type: 'number' },
 }

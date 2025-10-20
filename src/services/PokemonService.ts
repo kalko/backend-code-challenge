@@ -69,6 +69,7 @@ export class PokemonService {
             limit,
             offset: (page - 1) * limit,
             orderBy: { id: 'ASC' },
+            populate: ['pokemonAttacks.attack'],
         })
 
         return {
@@ -83,7 +84,7 @@ export class PokemonService {
     }
 
     async getPokemonById(id: string): Promise<Pokemon | null> {
-        return await this.em.findOne(Pokemon, { id })
+        return await this.em.findOne(Pokemon, { id }, { populate: ['pokemonAttacks.attack'] })
     }
 
     async getPokemonTypes(): Promise<string[]> {

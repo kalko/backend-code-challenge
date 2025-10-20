@@ -62,7 +62,11 @@ export class PokemonController {
         const { name } = request.params as { name: string }
         const em = request.server.em()
 
-        const pokemon = await em.findOne(Pokemon, { name: { $ilike: name } })
+        const pokemon = await em.findOne(
+            Pokemon,
+            { name: { $ilike: name } },
+            { populate: ['pokemonAttacks.attack'] },
+        )
 
         if (!pokemon) {
             return reply.code(404).send({ error: 'Pokemon not found' })
